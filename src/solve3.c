@@ -8,6 +8,7 @@
 
 int is_empty(tree *root) { return (root == NULL); }
 
+// ADD TO THE LEFT IF BIGGER, ELSE ADD TO THE RIGHT
 void add_tree_elem(tree **root, team t) {
   if (is_empty(*root)) {
     *root = (tree *)malloc(sizeof(tree));
@@ -28,6 +29,7 @@ void add_tree_elem(tree **root, team t) {
   }
 }
 
+// TRAVERSE THE BINARY TREE INORDER TO OUTPUT IN DECREASING SCORE ORDER
 void inorder(tree *root, FILE *output) {
   if (root) {
     inorder(root->left, output);
@@ -41,6 +43,7 @@ void inorder(tree *root, FILE *output) {
   }
 }
 
+// POPULATE TREE WITH THE TOP 8 TEAMS
 void minitask_3_1(FILE *input, FILE *output, team_node **head, tree **root) {
   team_node *temp = *head;
   while (temp != NULL) {
@@ -48,6 +51,8 @@ void minitask_3_1(FILE *input, FILE *output, team_node **head, tree **root) {
     temp = temp->next;
   }
 }
+
+// PRINT THEM IN CORRECT ORDER
 void minitask_3_2(FILE *input, FILE *output, tree **root) {
   fprintf(output, "\nTOP 8 TEAMS:\n");
   inorder((*root), output);

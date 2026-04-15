@@ -92,6 +92,7 @@ int top(stack *top, team *out) {
   return -1;
 }
 
+// FIND THE WINNERS FROM MATCH QUEUE AND ADD THEM TO WINNER STACK
 void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
                   team_node **head) {
   match m;
@@ -150,6 +151,7 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
   }
 }
 
+// MATCH THE WINNERS AGAINST EACH OTHER IN ANOTHER MATCH QUEUE
 void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
   team team1, team2;
   if (*st_top != NULL && (*st_top)->next == NULL) {
@@ -204,6 +206,7 @@ void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
   }
 }
 
+// REPEAT PREV OPERATIONS UNTIL 1 TEAM LEFT - FIND CHAMPION
 void minitask_2_4(FILE *input, FILE *output, queue **q, stack **st_top,
                   team_node **head) {
   int i = 1;
