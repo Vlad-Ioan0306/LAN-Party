@@ -1,4 +1,5 @@
 #include "solve3.h"
+#include "solve2.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +32,7 @@ void inorder(tree *root, FILE *output) {
   if (root) {
     inorder(root->left, output);
     int len = strlen(root->data.team_name);
-    while (len < 34) {
+    while (len < WIN_LEN) {
       strcat(root->data.team_name, " ");
       len++;
     }
