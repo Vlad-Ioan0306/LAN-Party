@@ -1,7 +1,7 @@
 #include "solve1.h"
+#include <float.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <float.h>
 #include <string.h>
 
 // TASK 1
@@ -32,8 +32,8 @@ void addAtEnd(team_node **head, team t) {
 float get_min(team_node **head) {
   float min = FLT_MAX;
   team_node *headcopy = *head;
-  while(headcopy != NULL) {
-    if(headcopy->data.points < min) {
+  while (headcopy != NULL) {
+    if (headcopy->data.points < min) {
       min = headcopy->data.points;
     }
     headcopy = headcopy->next;
@@ -68,7 +68,7 @@ void erase(team_node **head, float min_team_points) {
   }
 }
 
-void print(team_node *head, FILE* output) {
+void print(team_node *head, FILE *output) {
   while (head != NULL) {
     fprintf(output, "%s\n", head->data.team_name);
     head = head->next;
@@ -76,12 +76,12 @@ void print(team_node *head, FILE* output) {
 }
 
 // READ AND POPULATE LIST WITH DATA FROM INPUT FILE
-void minitask_1_1(FILE *input, FILE *output, team_node** head) {
+void minitask_1_1(FILE *input, FILE *output, team_node **head) {
   fscanf(input, "%d", &team_cnt);
-  for(int _team = 0; _team < team_cnt; _team++) {
+  for (int _team = 0; _team < team_cnt; _team++) {
     team new_team;
 
-    new_team.team_name = (char*) malloc(128*sizeof(char));
+    new_team.team_name = (char *)malloc(128 * sizeof(char));
     fscanf(input, "%d %127[^\n]\n", &new_team.player_cnt, new_team.team_name);
     int len = strlen(new_team.team_name);
     while (len > 0 && (new_team.team_name[len - 1] == ' ' ||
@@ -90,28 +90,28 @@ void minitask_1_1(FILE *input, FILE *output, team_node** head) {
       new_team.team_name[len - 1] = '\0';
       len--;
     }
-    new_team.players = (player*) malloc(new_team.player_cnt*sizeof(player));
+    new_team.players = (player *)malloc(new_team.player_cnt * sizeof(player));
     float avg_points = 0;
 
-    for(int _player = 0; _player < new_team.player_cnt; _player++) {
-      new_team.players[_player].last_name = (char*) malloc(64*sizeof(char));
+    for (int _player = 0; _player < new_team.player_cnt; _player++) {
+      new_team.players[_player].last_name = (char *)malloc(64 * sizeof(char));
       fscanf(input, "%s", new_team.players[_player].last_name);
 
-      new_team.players[_player].first_name = (char*) malloc(64*sizeof(char));
+      new_team.players[_player].first_name = (char *)malloc(64 * sizeof(char));
       fscanf(input, "%s", new_team.players[_player].first_name);
 
       fscanf(input, "%d", &new_team.players[_player].points);
       avg_points += new_team.players[_player].points;
     }
 
-    new_team.points = (avg_points/new_team.player_cnt);
+    new_team.points = (avg_points / new_team.player_cnt);
     addAtBeginning(&(*head), new_team);
   }
 }
 
 int find_pow_2() {
   int pow = 0;
-  while(team_cnt >= 1 << (pow+1)) {
+  while (team_cnt >= 1 << (pow + 1)) {
     pow++;
   }
   return pow;
@@ -120,7 +120,7 @@ int find_pow_2() {
 // ELIMINATE LOWEST SCORING TEAMS UNTIL # of TEAMS IS POWER OF 2
 void minitask_1_2(FILE *input, FILE *output, team_node **head) {
   int pow = find_pow_2();
-  while(team_cnt > 1 << pow) {
+  while (team_cnt > 1 << pow) {
     float min_team_points = get_min(&(*head));
     erase(&(*head), min_team_points);
   }
@@ -130,4 +130,3 @@ void minitask_1_2(FILE *input, FILE *output, team_node **head) {
 void minitask_1_3(FILE *input, FILE *output, team_node **head) {
   print(*head, output);
 }
-
