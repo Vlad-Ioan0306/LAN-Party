@@ -97,20 +97,21 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
   match m;
   while (get_queue_elem(q, &m) == 0) {
 
+    // GET TOP 8 TEAMS IN A NEW LIST
     if (team_cnt >= 5 && team_cnt <= 8) {
       addAtBeginning(head, m.team1);
       addAtBeginning(head, m.team2);
     }
 
-    char *team1_name = (char *)malloc(34 * sizeof(char));
+    char *team1_name = (char *)malloc(WIN_LEN * sizeof(char));
     strcpy(team1_name, m.team1.team_name);
-    char *team2_name = (char *)malloc(34 * sizeof(char));
+    char *team2_name = (char *)malloc(WIN_LEN * sizeof(char));
     strcpy(team2_name, m.team2.team_name);
 
     int len1 = strlen(m.team1.team_name);
     strcpy(team1_name, m.team1.team_name);
     int i = 0;
-    while (len1 + i < 33) {
+    while (len1 + i < MATCH_LEN) {
       strcat(team1_name, " ");
       i++;
     }
@@ -119,7 +120,7 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
     char empty[] = "";
     strcpy(team2_name, empty);
     i = 0;
-    while (len2 + i < 33) {
+    while (len2 + i < MATCH_LEN) {
       strcat(team2_name, " ");
       i++;
     }
@@ -158,7 +159,7 @@ void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
     int len1 = strlen(team1.team_name);
     strcpy(team1_name, team1.team_name);
     int i = 0;
-    while (len1 + i < 34) {
+    while (len1 + i < WIN_LEN) {
       strcat(team1_name, " ");
       i++;
     }
@@ -182,7 +183,7 @@ void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
       int len1 = strlen(m.team1.team_name);
       strcpy(team1_name, m.team1.team_name);
       int i = 0;
-      while (len1 + i < 34) {
+      while (len1 + i < WIN_LEN) {
         strcat(team1_name, " ");
         i++;
       }
@@ -190,7 +191,7 @@ void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
       int len2 = strlen(m.team2.team_name);
       strcpy(team2_name, m.team2.team_name);
       i = 0;
-      while (len2 + i < 34) {
+      while (len2 + i < WIN_LEN) {
         strcat(team2_name, " ");
         i++;
       }

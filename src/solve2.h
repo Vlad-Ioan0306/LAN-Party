@@ -3,6 +3,9 @@
 #include "structs.h"
 #include <stdio.h>
 
+#define MATCH_LEN 33
+#define WIN_LEN 34
+
 extern int team_cnt;
 
 queue* create_queue();
