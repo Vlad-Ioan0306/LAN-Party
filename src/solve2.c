@@ -104,30 +104,7 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
       addAtBeginning(head, m.team2);
     }
 
-    char *team1_name = (char *)malloc(WIN_LEN * sizeof(char));
-    strcpy(team1_name, m.team1.team_name);
-    char *team2_name = (char *)malloc(WIN_LEN * sizeof(char));
-    strcpy(team2_name, m.team2.team_name);
-
-    int len1 = strlen(m.team1.team_name);
-    strcpy(team1_name, m.team1.team_name);
-    int i = 0;
-    while (len1 + i < MATCH_LEN) {
-      strcat(team1_name, " ");
-      i++;
-    }
-
-    int len2 = strlen(m.team2.team_name);
-    char empty[] = "";
-    strcpy(team2_name, empty);
-    i = 0;
-    while (len2 + i < MATCH_LEN) {
-      strcat(team2_name, " ");
-      i++;
-    }
-    strcat(team2_name, m.team2.team_name);
-
-    fprintf(output, "%s-%s\n", team1_name, team2_name);
+    fprintf(output, "%-32s - %32s\n", m.team1.team_name, m.team2.team_name);
 
     if (m.team1.points > m.team2.points) {
       for (int i = 0; i < m.team1.player_cnt; i++) {
@@ -136,8 +113,6 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
       m.team1.points += 1.0;
       push(st_top, m.team1);
       team_cnt--;
-      free(team1_name);
-      free(team2_name);
     } else {
       for (int i = 0; i < m.team2.player_cnt; i++) {
         m.team2.players[i].points += 1;
@@ -145,8 +120,6 @@ void minitask_2_2(FILE *input, FILE *output, queue **q, stack **st_top,
       m.team2.points += 1.0;
       push(st_top, m.team2);
       team_cnt--;
-      free(team1_name);
-      free(team2_name);
     }
   }
 }
@@ -156,52 +129,22 @@ void minitask_2_3(FILE *input, FILE *output, queue **q, stack **st_top) {
   team team1, team2;
   if (*st_top != NULL && (*st_top)->next == NULL) {
     pop(st_top, &team1);
-    char *team1_name = (char *)malloc(35 * sizeof(char));
-    strcpy(team1_name, team1.team_name);
-    int len1 = strlen(team1.team_name);
-    strcpy(team1_name, team1.team_name);
-    int i = 0;
-    while (len1 + i < WIN_LEN) {
-      strcat(team1_name, " ");
-      i++;
-    }
-    fprintf(output, "%s-  %.2f\n", team1_name, team1.points);
-    free(team1_name);
+    fprintf(output, "%-33s -  %.2f\n", team1.team_name, team1.points);
   } else {
 
     while (*st_top != NULL && (*st_top)->next != NULL) {
       pop(st_top, &team1);
       pop(st_top, &team2);
+
       match m;
+
       m.team1 = team1;
       m.team2 = team2;
+
       add_queue(q, m);
 
-      char *team1_name = (char *)malloc(35 * sizeof(char));
-      strcpy(team1_name, m.team1.team_name);
-      char *team2_name = (char *)malloc(35 * sizeof(char));
-      strcpy(team2_name, m.team2.team_name);
-
-      int len1 = strlen(m.team1.team_name);
-      strcpy(team1_name, m.team1.team_name);
-      int i = 0;
-      while (len1 + i < WIN_LEN) {
-        strcat(team1_name, " ");
-        i++;
-      }
-
-      int len2 = strlen(m.team2.team_name);
-      strcpy(team2_name, m.team2.team_name);
-      i = 0;
-      while (len2 + i < WIN_LEN) {
-        strcat(team2_name, " ");
-        i++;
-      }
-
-      fprintf(output, "%s-  %.2f\n", team1_name, team1.points);
-      fprintf(output, "%s-  %.2f\n", team2_name, team2.points);
-      free(team1_name);
-      free(team2_name);
+      fprintf(output, "%-33s -  %.2f\n", m.team1.team_name, team1.points);
+      fprintf(output, "%-33s -  %.2f\n", m.team2.team_name, team2.points);
     }
   }
 }

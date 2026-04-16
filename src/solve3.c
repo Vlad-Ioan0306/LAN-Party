@@ -33,12 +33,7 @@ void add_tree_elem(tree **root, team t) {
 void inorder(tree *root, FILE *output) {
   if (root) {
     inorder(root->left, output);
-    int len = strlen(root->data.team_name);
-    while (len < WIN_LEN) {
-      strcat(root->data.team_name, " ");
-      len++;
-    }
-    fprintf(output, "%s-  %.2f\n", root->data.team_name, root->data.points);
+    fprintf(output, "%-33s -  %.2f\n", root->data.team_name, root->data.points);
     inorder(root->right, output);
   }
 }
