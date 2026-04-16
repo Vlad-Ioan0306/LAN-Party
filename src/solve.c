@@ -6,7 +6,7 @@
 
 int team_cnt;
 
-// GET TASK FROM INPUT FILE FUNCTION
+// GET TASK FROM INPUT FILE
 int get_task(FILE *task) {
   int nr_task = 0;
   char c;

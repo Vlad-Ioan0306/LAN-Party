@@ -75,6 +75,14 @@ void print(team_node *head, FILE *output) {
   }
 }
 
+int find_pow_2() {
+  int pow = 0;
+  while (team_cnt >= 1 << (pow + 1)) {
+    pow++;
+  }
+  return pow;
+}
+
 // READ AND POPULATE LIST WITH DATA FROM INPUT FILE
 void minitask_1_1(FILE *input, FILE *output, team_node **head) {
 
@@ -89,6 +97,7 @@ void minitask_1_1(FILE *input, FILE *output, team_node **head) {
     char buf_name[BUF_SIZE];
     sscanf(buf, "%d %127[^\n]", &new_team.player_cnt, buf_name);
 
+    // STRIP OF LEADING WHITESPACE
     int len = strlen(buf_name);
     while (len > 0 && (buf_name[len - 1] == ' ' || buf_name[len - 1] == '\r' ||
                        buf_name[len - 1] == '\t')) {
@@ -115,14 +124,6 @@ void minitask_1_1(FILE *input, FILE *output, team_node **head) {
     new_team.points = (avg_points / new_team.player_cnt);
     addAtBeginning(&(*head), new_team);
   }
-}
-
-int find_pow_2() {
-  int pow = 0;
-  while (team_cnt >= 1 << (pow + 1)) {
-    pow++;
-  }
-  return pow;
 }
 
 // ELIMINATE LOWEST SCORING TEAMS UNTIL # of TEAMS IS POWER OF 2
