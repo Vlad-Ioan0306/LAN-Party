@@ -1,4 +1,4 @@
-#include "solve1.h"
+#include "solve.h"
 #include <float.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -77,32 +77,40 @@ void print(team_node *head, FILE *output) {
 
 // READ AND POPULATE LIST WITH DATA FROM INPUT FILE
 void minitask_1_1(FILE *input, FILE *output, team_node **head) {
-  fscanf(input, "%d", &team_cnt);
+
+  char buf[BUF_SIZE];
+  fgets(buf, sizeof(buf), input);
+  sscanf(buf, "%d", &team_cnt);
+
   for (int _team = 0; _team < team_cnt; _team++) {
     team new_team;
 
-    new_team.team_name = (char *)malloc(128 * sizeof(char));
-    fscanf(input, "%d %127[^\n]\n", &new_team.player_cnt, new_team.team_name);
-    int len = strlen(new_team.team_name);
-    while (len > 0 && (new_team.team_name[len - 1] == ' ' ||
-                       new_team.team_name[len - 1] == '\r' ||
-                       new_team.team_name[len - 1] == '\t')) {
-      new_team.team_name[len - 1] = '\0';
+    fgets(buf, sizeof(buf), input);
+    char buf_name[BUF_SIZE];
+    sscanf(buf, "%d %127[^\n]", &new_team.player_cnt, buf_name);
+
+    int len = strlen(buf_name);
+    while (len > 0 && (buf_name[len - 1] == ' ' || buf_name[len - 1] == '\r' ||
+                       buf_name[len - 1] == '\t')) {
+      buf_name[len - 1] = '\0';
       len--;
     }
+    new_team.team_name = strdup(buf_name);
+
     new_team.players = (player *)malloc(new_team.player_cnt * sizeof(player));
     float avg_points = 0;
 
     for (int _player = 0; _player < new_team.player_cnt; _player++) {
       new_team.players[_player].last_name = (char *)malloc(64 * sizeof(char));
-      fscanf(input, "%s", new_team.players[_player].last_name);
-
       new_team.players[_player].first_name = (char *)malloc(64 * sizeof(char));
-      fscanf(input, "%s", new_team.players[_player].first_name);
 
-      fscanf(input, "%d", &new_team.players[_player].points);
+      fscanf(input, "%s %s %d", new_team.players[_player].last_name,
+             new_team.players[_player].first_name,
+             &new_team.players[_player].points);
       avg_points += new_team.players[_player].points;
     }
+    fgetc(input);
+    fgets(buf, sizeof(buf), input);
 
     new_team.points = (avg_points / new_team.player_cnt);
     addAtBeginning(&(*head), new_team);

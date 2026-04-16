@@ -1,5 +1,4 @@
-#include "solve2.h"
-#include "solve1.h"
+#include "solve.h"
 #include "structs.h"
 #include <limits.h>
 #include <stdio.h>

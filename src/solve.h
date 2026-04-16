@@ -7,8 +7,10 @@
 #include <stdio.h>
 
 #define FILE_ERROR 1010
-#define TASK_ERROR 1021
+#define TASK_ERROR 1020
 #define ARGS_ERROR 1030
+#define MALLOC_ERROR 1040
+#define BUF_SIZE 128
 
 extern int team_cnt;
 

@@ -3,6 +3,7 @@
 #include "structs.h"
 #include <stdio.h>
 
+
 extern int team_cnt;
 void addAtBeginning(team_node **head, team t);
 void addAtEnd(team_node **head, team t);
