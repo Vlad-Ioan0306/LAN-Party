@@ -1,3 +1,4 @@
+#include "solve.h"
 #include "structs.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,8 +24,11 @@ void add_tree_elem(tree **root, team t) {
   } else {
     if (strcmp(t.team_name, (*root)->data.team_name) > 0) {
       add_tree_elem(&((*root)->left), t);
-    } else if (strcmp(t.team_name, (*root)->data.team_name) < 0)
+    } else if (strcmp(t.team_name, (*root)->data.team_name) < 0) {
       add_tree_elem(&((*root)->right), t);
+    } else {
+      printf("ERROR: %d - Duplicate team found, check input file!!\n", TEAM_DUP_ERROR);
+    }
   }
 }
 

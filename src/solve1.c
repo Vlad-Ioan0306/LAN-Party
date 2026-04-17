@@ -77,7 +77,7 @@ void print(team_node *head, FILE *output) {
 
 int find_pow_2() {
   int pow = 0;
-  while (team_cnt >= 1 << (pow + 1)) {
+  while (team_cnt >= (1 << (pow + 1))) {
     pow++;
   }
   return pow;

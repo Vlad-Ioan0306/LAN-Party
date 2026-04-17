@@ -10,6 +10,7 @@
 #define TASK_ERROR 1020
 #define ARGS_ERROR 1030
 #define MALLOC_ERROR 1040
+#define TEAM_DUP_ERROR 1050
 #define BUF_SIZE 128
 
 extern int team_cnt;

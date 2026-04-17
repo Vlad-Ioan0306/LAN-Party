@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
 
   if (argc != 4) {
-    printf("%d: Not enough arguments\n", ARGS_ERROR);
+    printf("ERROR %d -  Not enough arguments\n", ARGS_ERROR);
     return ARGS_ERROR;
   }
 
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   FILE *output = fopen(argv[3], "w");
 
   if (task == NULL || input == NULL || output == NULL) {
-    printf("%d: Could not open files/wrong file path(s)\n", FILE_ERROR);
+    printf("ERROR %d - Could not open files/wrong file path(s)\n", FILE_ERROR);
     return FILE_ERROR;
   }
 
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
            &root);
     break;
   default:
-    printf("%d: Could not find task/could not calculate task correctly\n",
+    printf("ERROR %d - Could not find task/could not calculate task correctly\n",
            TASK_ERROR);
     break;
   }
