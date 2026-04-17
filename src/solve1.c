@@ -13,22 +13,6 @@ void addAtBeginning(team_node **head, team t) {
   *head = newteam;
 }
 
-void addAtEnd(team_node **head, team t) {
-
-  if (*head == NULL)
-    addAtBeginning(&(*head), t);
-  else {
-    team_node *aux = *head;
-    team_node *newteam = (team_node *)malloc(sizeof(team_node));
-    newteam->data = t;
-    while (aux->next != NULL) {
-      aux = aux->next;
-    }
-    aux->next = newteam;
-    newteam->next = NULL;
-  }
-}
-
 float get_min(team_node **head) {
   float min = FLT_MAX;
   team_node *headcopy = *head;
