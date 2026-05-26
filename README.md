@@ -53,8 +53,5 @@
 * Verificarea alocării: în prezent nu verifică erorile malloc
 * Persistența datelor: nu are nicio modalitate de a înregistra progresul în cazul în care procesul este oprit sau întrerupt
 
-### Scalabilitate
-* Scalare dinamică: nu utilizează alocarea dinamică, ci doar dimensiuni fixe
-
 ### Performanță
 * Complexitate: utilizează un arbore BST de bază; ar fi putut utiliza un arbore AVL
