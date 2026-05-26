@@ -1,64 +1,60 @@
 # LAN Party
 
-## DESCRIPTION
-* This program simulates a LAN tournament where multiple teams participate
+## DESCRIERE
+* Acest program simulează un turneu LAN la care participă mai multe echipe
 
-### Phase 1: Team Filtering
+### Etapa 1: Filtrarea echipelor
 
-* The program looks at all the teams
-* It checks each players score and calculates the score for each team.
-* Then it removes teams with the smallest scores until there are only teams that can fit into a bracket
-
-
-### Phase 2: Knockout Simulation
-
-* Teams are paired up and play against each other
-* The winning team is decided by which team has the bigger score and moves on to the next round
-* The losing team is out of the tournament
-* Repeats this until only 1 team remains
+* Programul analizează toate echipele
+* Verifică punctajul fiecărui jucător și calculează punctajul fiecărei echipe.
+* Apoi elimină echipele cu cele mai mici scoruri până când rămân doar echipele care se încadrează într-o grupă
 
 
-### Phase 3: Elite Rankings
+### Faza 2: Simularea eliminării directe
 
-* The top eight teams are put into a BST sorted by their score
-* If two teams have the same score they are sorted by their name
-* The program then prints out the rankings
+* Echipele sunt împerecheate și joacă una împotriva celeilalte
+* Echipa câștigătoare este cea care are scorul mai mare și trece în runda următoare
+* Echipa învinsă este eliminată din turneu
+* Se repetă acest proces până când rămâne o singură echipă
 
 
-## USAGE
+### Faza 3: Clasamentul de elită
 
-### COMPILE
-* You do this by typing the following inside the terminal:
+* Primele opt echipe sunt introduse într-un BST sortat după punctajul lor
+* Dacă două echipe au același punctaj, ele sunt sortate după nume
+* Programul afișează apoi clasamentul
+
+
+## UTILIZARE
+
+### COMPILARE
+* Faceți acest lucru tastând următoarea comandă în terminal:
 `make build`
 
-### RUN
-* Then you can run it by typing this in the terminal:
+### RULARE
+* Apoi, îl puteți rula tastând următoarea comandă în terminal:
 `make runall`
 
 
-#### DESCRIPTION OF FILES
+#### DESCRIEREA FIȘIERELOR
 
-* `c.in` tells the program which part of the tournament to run.
+* `c.in` indică programului ce parte a turneului trebuie rulată.
 
-* `d.in` has a list of teams their players and their starting scores.
+* `d.in` conține o listă a echipelor, a jucătorilor acestora și a punctajelor inițiale.
 
-* `r.out` shows you the results.
+* `r.out` afișează rezultatele.
 
 
-## IMPROVEMENTS TO BE MADE
+## ÎMBUNĂTĂȚIRI DE EFECTUAT
 
-* The current program works, but it has room for improvement in areas like: stability, resource management and reliability
+* Programul actual funcționează, dar poate fi îmbunătățit în domenii precum: stabilitate, gestionarea resurselor și performanță
 
-### Memory management
-* Allocation verification: currently doesn't check for malloc errors
-* Resource deallocation: currently it doesn't free everything using strict cleanup routines
+### Gestionarea memoriei
+* Verificarea alocării: în prezent nu verifică erorile malloc
+* Persistența datelor: nu are nicio modalitate de a înregistra progresul în cazul în care procesul este oprit sau întrerupt
 
-### Reliability
-* Input validation: it doesn't guard against malformed data, duplicate entries or unexpected inputs since it needs a specific format inside the input file
-* Data persistence: has no way of recording progress if stopped/impeded in the process
+### Scalabilitate
+* Scalare dinamică: nu utilizează alocarea dinamică, ci doar dimensiuni fixe
 
-### Scalability
-* Dynamic scaling: it doesn't use dynamic allocation, only fixed size
-
-### Performance
-* Complexity: it uses a basic BST, could have used an AVL tree
+### Performanță
+* Complexitate: utilizează un arbore BST de bază; ar fi putut utiliza un arbore AVL
