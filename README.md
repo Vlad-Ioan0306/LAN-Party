@@ -10,7 +10,7 @@
 * Apoi elimină echipele cu cele mai mici scoruri până când rămân doar echipele care se încadrează într-o grupă
 
 
-### Faza 2: Simularea eliminării directe
+### Etapa 2: Simularea eliminării directe
 
 * Echipele sunt împerecheate și joacă una împotriva celeilalte
 * Echipa câștigătoare este cea care are scorul mai mare și trece în runda următoare
@@ -18,7 +18,7 @@
 * Se repetă acest proces până când rămâne o singură echipă
 
 
-### Faza 3: Clasamentul de elită
+### Etapa 3: Clasamentul de elită
 
 * Primele opt echipe sunt introduse într-un BST sortat după punctajul lor
 * Dacă două echipe au același punctaj, ele sunt sortate după nume
